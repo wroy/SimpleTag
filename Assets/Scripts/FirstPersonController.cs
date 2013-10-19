@@ -44,8 +44,6 @@ public class FirstPersonController : MonoBehaviour {
 		
 		speed = transform.rotation * speed;
 		
-		
-		
 		cc.Move(speed * Time.deltaTime);
 	
 	}
