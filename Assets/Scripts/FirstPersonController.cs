@@ -12,6 +12,8 @@ public class FirstPersonController : MonoBehaviour {
 	float verticalVelocity = 0.0f;
 	public float jumpSpeed = 10;
 	CharacterController cc;
+	public GUIText itStatusText;
+	public bool itStatus = true;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +23,10 @@ public class FirstPersonController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//It status 
+		//itStatus = cc.isGrounded;
+		//itStatusText.enabled = itStatus;
+		
 		//camera 
 		
 		float rotX = lookSpeed * Input.GetAxis("Mouse X");
@@ -45,6 +51,37 @@ public class FirstPersonController : MonoBehaviour {
 		speed = transform.rotation * speed;
 		
 		cc.Move(speed * Time.deltaTime);
+		Debug.Log("I hit something");
 	
+	}
+	
+	/*void OnCollisionEnter(Collision col) {
+		Debug.Log("I hit something");
+		if(col.gameObject.tag == "Enemy") {
+			Debug.Log(col.gameObject.tag);
+			if (itStatus) {
+				itStatus = false;
+				itStatusText.enabled = itStatus;
+			}
+			else {
+				itStatus = true;
+				itStatusText.enabled = itStatus;
+			}
+		}
+	} */
+	
+	void OnTriggerEnter( Collider col){
+		Debug.Log("Collided");	
+		if(col.gameObject.tag == "Enemy") {
+			Debug.Log(col.gameObject.tag);
+			if (itStatus) {
+				itStatus = false;
+				itStatusText.enabled = false;
+			}
+			else {
+				itStatus = true;
+				itStatusText.enabled = true;
+			}
+		}
 	}
 }
