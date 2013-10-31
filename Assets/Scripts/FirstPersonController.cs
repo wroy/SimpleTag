@@ -34,8 +34,8 @@ public class FirstPersonController : MonoBehaviour {
 		float forwardSpeed = movementSpeed * Input.GetAxis("Vertical");
 		float sideSpeed = movementSpeed * Input.GetAxis("Horizontal");
 		
+		//jumping
 		verticalVelocity += 2 * Physics.gravity.y * Time.deltaTime;
-		
 		if (cc.isGrounded && Input.GetButton("Jump")){ //GetButtonDown is the anti bunny hop
 			verticalVelocity = jumpSpeed;
 		}
