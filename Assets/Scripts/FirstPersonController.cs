@@ -5,15 +5,14 @@ using System.Collections;
 
 public class FirstPersonController : MonoBehaviour {
 	
-	public float movementSpeed = 8;
-	public float lookSpeed = 4;
-	float verticalRotation = 0;
-	public float verticalLookRange = 60.0f;
-	float verticalVelocity = 0.0f;
-	public float jumpSpeed = 10;
-	CharacterController cc;
-	public GUIText itStatusText;
-	public bool itStatus = true;
+	public float movementSpeed = 8;//movement speed of the player
+	public float lookSpeed = 4; // look speed of the player
+	float verticalRotation = 0; // the vertical look axis
+	public float verticalLookRange = 60.0f;//how far the player can look up/down
+	float verticalVelocity = 0.0f;//falling/jumping acceleration
+	public float jumpSpeed = 10;//jump speed
+	CharacterController cc;//the character controller, the player
+
 
 	// Use this for initialization
 	void Start () {
@@ -23,12 +22,7 @@ public class FirstPersonController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//It status 
-		//itStatus = cc.isGrounded;
-		//itStatusText.enabled = itStatus;
-		
 		//camera 
-		
 		float rotX = lookSpeed * Input.GetAxis("Mouse X");
 		transform.Rotate(0, rotX, 0);
 		
@@ -51,37 +45,7 @@ public class FirstPersonController : MonoBehaviour {
 		speed = transform.rotation * speed;
 		
 		cc.Move(speed * Time.deltaTime);
-		Debug.Log("I hit something");
 	
-	}
+	}	
 	
-	/*void OnCollisionEnter(Collision col) {
-		Debug.Log("I hit something");
-		if(col.gameObject.tag == "Enemy") {
-			Debug.Log(col.gameObject.tag);
-			if (itStatus) {
-				itStatus = false;
-				itStatusText.enabled = itStatus;
-			}
-			else {
-				itStatus = true;
-				itStatusText.enabled = itStatus;
-			}
-		}
-	} */
-	
-	void OnTriggerEnter( Collider col){
-		Debug.Log("Collided");	
-		if(col.gameObject.tag == "Enemy") {
-			Debug.Log(col.gameObject.tag);
-			if (itStatus) {
-				itStatus = false;
-				itStatusText.enabled = false;
-			}
-			else {
-				itStatus = true;
-				itStatusText.enabled = true;
-			}
-		}
-	}
 }
