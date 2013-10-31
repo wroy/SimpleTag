@@ -1,4 +1,4 @@
-FPSTag
+SimpleTag
 =========
 
 A simple first person tag shooter hybrid game
